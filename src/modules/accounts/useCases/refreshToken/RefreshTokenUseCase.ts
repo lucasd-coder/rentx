@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 
 import auth from '@config/auth';
 import { UsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokenRepository';
-import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 interface IPayload {
@@ -17,7 +17,7 @@ class RefreshTokenUseCase {
     @inject('UsersTokenRepository')
     private usersTokenRepository: UsersTokenRepository,
     @inject('DayjsDateProvider')
-    private dayjsDateProvider: DayjsDateProvider,
+    private dayjsDateProvider: IDateProvider,
   ) {}
   async execute(token: string): Promise<string> {
     const { sub, email } = verify(token, auth.secret_refresh_token) as IPayload;

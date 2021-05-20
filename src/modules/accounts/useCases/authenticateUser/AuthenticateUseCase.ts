@@ -5,6 +5,7 @@ import { inject, injectable } from 'tsyringe';
 import auth from '@config/auth';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
@@ -29,7 +30,7 @@ class AuthenticateUserUseCase {
     @inject('UsersTokenRepository')
     private usersTokenRepository: IUsersTokenRepository,
     @inject('DayjsDateProvider')
-    private dayjsDateProvider: DayjsDateProvider,
+    private dayjsDateProvider: IDateProvider,
   ) {}
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
