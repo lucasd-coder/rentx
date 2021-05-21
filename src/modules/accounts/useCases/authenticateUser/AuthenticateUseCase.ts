@@ -6,7 +6,6 @@ import auth from '@config/auth';
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { IUsersTokenRepository } from '@modules/accounts/repositories/IUsersTokenRepository';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
-import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
